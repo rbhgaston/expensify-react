@@ -6,7 +6,6 @@ import {Provider} from 'react-redux'
 import AppRouter from './routers/AppRouter'
 import configStore from './store/configStore';
 import {addExpense} from './actions/expenses'
-import getVisibleExpenses from './selectors/expenses'
 // CSS
 import 'react-dates/lib/css/_datepicker.css';
 

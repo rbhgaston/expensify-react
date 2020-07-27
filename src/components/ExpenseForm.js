@@ -1,8 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 // react-dates
-
-    import 'react-dates/initialize'
+import 'react-dates/initialize'
 import {SingleDatePicker} from 'react-dates';
 
 export default class ExpenseForm extends React.Component{
@@ -52,9 +51,7 @@ export default class ExpenseForm extends React.Component{
                 amount: parseFloat(this.state.amount) * 100, // convert to pennies
                 createdAt: this.state.createdAt.valueOf()
             })
-
         }
-
     }
 
     render(){

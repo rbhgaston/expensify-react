@@ -3,11 +3,11 @@
 exports[`render ExpenseListItem 1`] = `
 <div>
   <Link
-    to="/edit/1"
+    to="/edit/0"
   >
      
     <h3>
-      test1
+      test0
     </h3>
   </Link>
   <p>

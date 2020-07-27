@@ -27,12 +27,12 @@ test('sort by date', () => {
 test('filter by text', () => {
     const filters = {
         sort: 'amount',
-        text: '3',
+        text: '2',
         startDate: undefined,
         endDate: undefined
     }
     expect(getExpenses(expenses, filters))
-        .toEqual([expenses[1]])
+        .toEqual([expenses[2]])
 })
 
 

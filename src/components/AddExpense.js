@@ -3,17 +3,24 @@ import ExpenseForm from './ExpenseForm';
 import {addExpense} from '../actions/expenses';
 import {connect} from 'react-redux'
 
-function AddExpense(props){
+export function AddExpense(props){
     return (
         <div>
             <h1>Add Expense</h1>
-            <ExpenseForm onSubmit={(expense) => {
-                props.dispatch(addExpense(expense))
-                props.history.push('/')
-            }}/>
+            <ExpenseForm
+                onSubmit={(expense) => {
+                    props.addExpense(expense)
+                    props.history.push('/')
+                }}
+            />
         </div>
     )
 }
 
-export default connect()(AddExpense)
+const mapDispatchToProps = (dispatch) => ({
+    addExpense: (expense) => dispatch(addExpense(expense))
+})
+
+// if you pass mapDispatchToProps, you lose access to dispatch in props
+export default connect(undefined, mapDispatchToProps)(AddExpense)
 
