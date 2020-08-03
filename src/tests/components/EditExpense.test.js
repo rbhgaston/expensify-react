@@ -30,7 +30,7 @@ test('call editExpense and history.push in onSubmit with right args', () => {
     expect(editExpenseSpy).toHaveBeenLastCalledWith(expenseIndex, expenses[expenseIndex])
     expect(historySpy.push).toHaveBeenLastCalledWith('/')
 })
-// TODO simulate vs prop()()
+
 test('call removeExpense and history.push in onClick with right args', () => {
     wrapper.find('button').simulate('click')
 
