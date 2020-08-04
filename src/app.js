@@ -14,5 +14,5 @@ const jsx = (
         <AppRouter />
     </Provider>
 )
-
+console.log('testing for source mpa in prod env')
 ReactDOM.render(jsx, document.getElementById('root'))
