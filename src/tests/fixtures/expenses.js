@@ -21,4 +21,6 @@ const expenses = [
     }
 ]
 
+export const totalAmount = 600
+
 export default expenses
