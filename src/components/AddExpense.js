@@ -1,7 +1,7 @@
 import React from 'react';
-import ExpenseForm from './ExpenseForm';
-import {addExpense} from '../actions/expenses';
 import {connect} from 'react-redux'
+import ExpenseForm from './ExpenseForm';
+import {startAddExpense, addExpense} from '../actions/expenses';
 
 export function AddExpense(props){
     return (
@@ -9,7 +9,7 @@ export function AddExpense(props){
             <h1>Add Expense</h1>
             <ExpenseForm
                 onSubmit={(expense) => {
-                    props.addExpense(expense)
+                    props.startAddExpense(expense)
                     props.history.push('/')
                 }}
             />
@@ -18,7 +18,7 @@ export function AddExpense(props){
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    addExpense: (expense) => dispatch(addExpense(expense))
+    startAddExpense: (expense) => dispatch(startAddExpense(expense))
 })
 
 // if you pass mapDispatchToProps, you lose access to dispatch in props

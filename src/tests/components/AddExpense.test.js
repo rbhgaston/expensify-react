@@ -10,11 +10,11 @@ test('render AddExpense', () => {
 })
 
 test('call addExpense and history.push in onSubmit with right args', () => {
-    const addExpenseSpy = jest.fn()
+    const startAddExpense = jest.fn()
     const history = {push: jest.fn()}
-    const wrapper = shallow(<AddExpense addExpense={addExpenseSpy} history={history}/>)
+    const wrapper = shallow(<AddExpense startAddExpense={startAddExpense} history={history}/>)
     wrapper.find('ExpenseForm').simulate('submit', expenses[0])
 
-    expect(addExpenseSpy).toHaveBeenLastCalledWith( expenses[0])
+    expect(startAddExpense).toHaveBeenLastCalledWith( expenses[0])
     expect(history.push).toHaveBeenLastCalledWith('/')
 })

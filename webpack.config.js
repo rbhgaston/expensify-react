@@ -2,10 +2,13 @@ const path = require('path')
 const TerserJSPlugin = require('terser-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const Dotenv = require('dotenv-webpack')
 
 module.exports= (env) => {
     const isProd = env === 'production'
-    // console.log(env)
+    // env works only in dev or test
+// in prod env vars are se tby heroku
+    const configEnv = process.env.NODE_ENV === 'test' ? 'test' : 'dev'
 
     return {
         entry: './src/app.js',
@@ -36,27 +39,29 @@ module.exports= (env) => {
             ]
         },
         plugins: [
-            new MiniCssExtractPlugin({
-                filename: 'styles.css'
-            })
+            new MiniCssExtractPlugin({filename: 'styles.css'}),
+            ...(isProd ? [] : [new Dotenv({path: `./config/.env.${configEnv}`})])
         ],
         optimization: {
-            minimize: true,
+            minimize: isProd,
             minimizer: [
                 new TerserJSPlugin(),
-                // this plugin disables stand-alone source maps and allows only the inline ones
-                // new OptimizeCssAssetsPlugin({
-                //     cssProcessorOptions: {
-                //         map: {
-                //             inline: true
-                //         }
-                //     }
-                // })
+                // to add inline source map set map: {inline: true}
+                // to add stand-alone source map files set map: {inline: false, annotation: true}
+                // annotation that cssnano built on postcss adds the comment url to source map
+                new OptimizeCssAssetsPlugin({
+                    cssProcessorOptions: {
+                        map: {
+                            inline: false,
+                            annotation: true
+                        }
+                    }
+                })
             ]
         },
         // inline is slow but enables source map for separated css files
         // cheap-module-eval-source-map
-        devtool: isProd ? 'source-map' : 'inline-source-map',
+        devtool: isProd ? 'source-map' : 'cheap-module-source-map',
         devServer: {
             publicPath: '/dist/',
             contentBase: path.join(__dirname, 'public'),
