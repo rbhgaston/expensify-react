@@ -3,6 +3,7 @@ const TerserJSPlugin = require('terser-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const Dotenv = require('dotenv-webpack')
+const webpack = require('webpack')
 
 module.exports= (env) => {
     const isProd = env === 'production'
@@ -40,7 +41,13 @@ module.exports= (env) => {
         },
         plugins: [
             new MiniCssExtractPlugin({filename: 'styles.css'}),
-            ...(isProd ? [] : [new Dotenv({path: `./config/.env.${configEnv}`})])
+            ...(isProd ?
+                [new webpack.EnvironmentPlugin(['FIREBASE_API_KEY', 'FIREBASE_AUTH_DOMAIN', 'FIREBASE_DATABASE_URL',
+                'FIREBASE_PROJECT_ID', 'FIREBASE_STORAGE_BUCKET', 'FIREBASE_MESSAGING_SENDER_ID', 'FIREBASE_APP_ID',
+                'FIREBASE_MEASUREMENT_ID'])]
+                : [new Dotenv({path: `./config/.env.${configEnv}`})]
+            ),
+
         ],
         optimization: {
             minimize: isProd,
