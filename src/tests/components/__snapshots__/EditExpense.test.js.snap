@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`render EditExpense 1`] = `
+exports[`render EditExpensePage 1`] = `
 <div>
   <ExpenseForm
     expense={
@@ -8,7 +8,7 @@ exports[`render EditExpense 1`] = `
         "amount": 100,
         "createdAt": 777600000,
         "description": "test0",
-        "id": 0,
+        "id": "0",
       }
     }
     onSubmit={[Function]}

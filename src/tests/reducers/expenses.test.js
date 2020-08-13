@@ -34,3 +34,8 @@ test('edit expense of state', () => {
     expect(expensesReducer(expenses, {type: 'EDIT', id: expenses[1].id, updates}))
         .toEqual([expenses[0], {...expenses[1], ...updates},  expenses[2]])
 })
+
+test('set expenses', () => {
+    const state = expensesReducer([], {type: 'SET', expenses})
+    expect(state).toEqual(expenses)
+})

@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import ExpenseForm from './ExpenseForm';
 import {startAddExpense, addExpense} from '../actions/expenses';
 
-export function AddExpense(props){
+export function AddExpensePage(props){
     return (
         <div>
             <h1>Add Expense</h1>
@@ -22,5 +22,5 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 // if you pass mapDispatchToProps, you lose access to dispatch in props
-export default connect(undefined, mapDispatchToProps)(AddExpense)
+export default connect(undefined, mapDispatchToProps)(AddExpensePage)
 
